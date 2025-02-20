@@ -1,0 +1,42 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+class caesarCipher {
+    caesarCipher() {
+    }
+
+    public static String encode(String enc, int offset) {
+        offset = offset % 26 + 26;
+        StringBuilder encoded = new StringBuilder();
+
+        for(char i : enc.toCharArray()) {
+            if (Character.isLetter(i)) {
+                if (Character.isUpperCase(i)) {
+                    encoded.append((char)(65 + (i - 65 + offset) % 26));
+                } else {
+                    encoded.append((char)(97 + (i - 97 + offset) % 26));
+                }
+            } else {
+                encoded.append(i);
+            }
+        }
+
+        return encoded.toString();
+    }
+
+    public static String decode(String enc, int offset) {
+        return encode(enc, 26 - offset);
+    }
+
+    public static void main(String[] args) throws Exception {
+        String msg = "Simats University";
+        System.out.println("Simulating Caesar Cipher\n------------------------");
+        System.out.println("Input : " + msg);
+        System.out.println("Encrypted Message : ");
+        System.out.println(encode(msg, 3));
+        System.out.println("Decrypted Message : ");
+        System.out.println(decode(encode(msg, 3), 3));
+    }
+}
